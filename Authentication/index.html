@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My App with Auth</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nothing+You+Could+Do&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
+    <script defer src="app.js"></script>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <div id="header">
+      <div></div>
+
+      <div>
+        <!-- Sign in form -->
+
+        <form id="sign-in-form">
+          <div id="sign-in-inputs">
+            <input
+              type="email"
+              id="sign-in-email"
+              placeholder="Email"
+              required
+              autocomplete="off"
+            />
+            <input
+              type="password"
+              id="sign-in-password"
+              placeholder="Password"
+              required
+              autocomplete="off"
+            />
+          </div>
+
+          <div
+            id="forgot-password-link"
+            class="auth"
+            auth="show-forgot-password-form"
+          >
+            Forgot?
+          </div>
+
+          <button id="sign-in-button" class="purple-button" type="submit">
+            Sign In
+          </button>
+          <button
+            id="create-user-link-header"
+            class="auth purple-button"
+            auth="show-create-user-form"
+          >
+            Create User
+          </button>
+        </form>
+      </div>
+
+      <div class="hide-when-signed-out hide" id="user-details-header">
+        <h1 id="display-name-header"></h1>
+      </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="dashboard" class="hide-when-signed-out">
+      <div>
+        <form id="to-do-list-form">
+          <h1>New Contact</h1>
+          <input
+            type="text"
+            id="item"
+            placeholder="Name"
+            required
+            autocomplete="off"
+          />
+		  <input
+            type="text"
+            id="item2"
+            placeholder="Phone"
+            required
+            autocomplete="off"
+          />
+		  <input
+		  type="email"
+		  id="item3"
+		  placeholder="Email"
+		  required
+		  autocomplete="off"
+		/>
+		
+          <button>Add</button>
+        </form>
+      </div>
+
+      <div>
+        <h1>Contact List</h1>
+        <div id="to-do-list-items">
+			
+			
+		</div>
+      </div>
+
+      <div>
+        <div id="account">
+          <h1>Account</h1>
+          <button class="auth" auth="sign-out">sign out</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal">
+      <div id="modal-content">
+        <button id="close">&times</button>
+        <!-- Authentication -->
+        <div id="authentication">
+          <!-- Create user form -->
+          <form id="create-user-form">
+            <div id="create-user-inputs">
+              <input
+                type="text"
+                id="create-user-display-name"
+                placeholder="Display Name"
+                required
+                autocomplete="off"
+              />
+              <input
+                type="email"
+                id="create-user-email"
+                placeholder="Email"
+                required
+                autocomplete="off"
+              />
+              <input
+                type="password"
+                id="create-user-password"
+                placeholder="Password"
+                required
+                autocomplete="off"
+              />
+            </div>
+            <button id="create-user-button" class="purple-button" type="submit">
+              Create User
+            </button>
+          </form>
+
+          <!-- Forgot password form form -->
+          <form id="forgot-password-form">
+            <div id="forgot-password-inputs">
+              <input
+                type="email"
+                id="forgot-password-email"
+                placeholder="Email"
+                required
+                autocomplete="off"
+              />
+            </div>
+            <button id="forgot-password-button" type="submit">
+              Send Recovery Email
+            </button>
+          </form>
+
+          <!-- Success and error messages -->
+          <div id="message"></div>
+
+          <!-- Loading visual cue -->
+          <div id="loading-outer-container">
+            <div id="loading-inner-container">
+              <div id="loadspin">
+                <div id="circle1"></div>
+                <div id="circle2"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Have or need account dialog -->
+          <div id="have-or-need-account-dialog">
+            <p id="create-user-dialog">
+              Don't have an account?
+              <span
+                id="create-user-link"
+                class="auth"
+                auth="show-create-user-form"
+              >
+                Create User
+              </span>
+            </p>
+            <p id="sign-in-dialog">
+              Already have an account?
+              <span id="sign-in-link" class="auth" auth="show-sign-in-form">
+                Sign In
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
